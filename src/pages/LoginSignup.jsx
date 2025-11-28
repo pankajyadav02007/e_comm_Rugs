@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
 const LoginSignup = () => {
+  const [SignupDetails, setSignupDetails] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  function handleInput(e) {
+    const { name, value } = e.target;
+    setSignupDetails((prev) => ({ ...prev, [name]: value }));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(SignupDetails);
+  }
+
   return (
-    <div className="w-[100%] h-[150vh] bg-[#fce3fe] pt-25">
+    <form
+      onSubmit={handleSubmit}
+      className="w-[100%] h-[150vh] bg-[#fce3fe] pt-25"
+    >
       <div className="w-[500px] h-[550px] bg-white m-auto p-6">
         <h1 className="flex items-center justify-center p-2 text-2xl font-semibold">
           Sign Up
@@ -11,32 +30,38 @@ const LoginSignup = () => {
         <div className=" mt-7 mb-5">
           <h1>Name</h1>
           <input
+            name="name"
             className="h-12 border w-[100%] pl-5 border-[#c9c9c9] outline-none text-[#5c5c5c] size-4"
             type="text"
             placeholder="Enter Your Name"
+            onChange={(e) => handleInput(e)}
           />
         </div>
         <div className=" mt-7 mb-5">
           <h1>Email</h1>
           <input
+            name="email"
             className="h-12 border w-[100%] pl-5 border-[#c9c9c9] outline-none text-[#5c5c5c] size-4"
             type="Emai"
             placeholder="Enter Your Email"
+            onChange={(e) => handleInput(e)}
           />
         </div>
         <div className=" mt-7 mb-5">
           <h1>Password</h1>
           <input
+            name="password"
             className="h-12 border w-[100%] pl-5 border-[#c9c9c9] outline-none text-[#5c5c5c] size-4"
             type="Password"
             placeholder="Enter Your password"
+            onChange={(e) => handleInput(e)}
           />
         </div>
         <div className="flex items-center gap-2">
           <input type="checkbox" name="" id="" />
           <p>By continuing, i agree to the terms of use & privacy policy.</p>
         </div>
-        <button className="w-[420px] h-[42px] text-white bg-[#ff4141] mt-7 border-none font-[24px] from-neutral-500 cursor-pointer">
+        <button className="w-[420px] h-[42px]  text-white bg-[#ff4141] mt-7 border-none font-[24px] from-neutral-500 cursor-pointer">
           Continue
         </button>
         <p className="mt-5 ">
@@ -46,7 +71,7 @@ const LoginSignup = () => {
           </span>
         </p>
       </div>
-    </div>
+    </form>
   );
 };
 
